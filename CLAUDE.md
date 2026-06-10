@@ -50,7 +50,7 @@ like Spring Health, Scribe, and Parafin.
 
 Topics to cover:
 - [x] Project scaffold and gem setup (jwt, redis, bcrypt, rack-cors, rspec-rails)
-- [ ] User model with BCrypt (has_secure_password)
+- [x] User model with BCrypt (has_secure_password)
 - [ ] JwtService — encoding and decoding tokens
 - [ ] ApplicationController — authenticating every request
 - [ ] Auth controller — register and login endpoints
