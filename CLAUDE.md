@@ -51,8 +51,8 @@ like Spring Health, Scribe, and Parafin.
 Topics to cover:
 - [x] Project scaffold and gem setup (jwt, redis, bcrypt, rack-cors, rspec-rails)
 - [x] User model with BCrypt (has_secure_password)
-- [ ] JwtService — encoding and decoding tokens
-- [ ] ApplicationController — authenticating every request
+- [x] JwtService — encoding and decoding tokens
+- [x] ApplicationController — authenticating every request
 - [ ] Auth controller — register and login endpoints
 - [ ] Task model with user association and validations
 - [ ] Tasks controller — full CRUD with Redis cache-aside pattern
