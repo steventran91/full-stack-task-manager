@@ -53,7 +53,7 @@ Topics to cover:
 - [x] User model with BCrypt (has_secure_password)
 - [x] JwtService — encoding and decoding tokens
 - [x] ApplicationController — authenticating every request
-- [ ] Auth controller — register and login endpoints
+- [x] Auth controller — register and login endpoints
 - [ ] Task model with user association and validations
 - [ ] Tasks controller — full CRUD with Redis cache-aside pattern
 - [ ] Cache invalidation on writes
