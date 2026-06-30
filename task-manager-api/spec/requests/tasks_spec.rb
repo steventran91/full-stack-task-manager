@@ -35,25 +35,21 @@ RSpec.describe "Tasks", type: :request do
     end
   end
 
-  # describe "GET /create" do
-  #   it "returns http success" do
-  #     get "/tasks/create"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe "GET /tasks/:id" do
+    let(:user) {User.create!(first_name: "Sasuke", last_name: "Uchiha", email: "clankiller@gmail.com", password: "fuckitachi")}
+    let(:task) {user.tasks.create!(title: "Kill Naruto", status: "pending")}
+    let(:token) {JwtService.encode({user_id: user.id})}
 
-  # describe "GET /update" do
-  #   it "returns http success" do
-  #     get "/tasks/update"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+    it "get task by ID returns 200" do
+      get "/tasks/#{task.id}",
+      headers: {"Authorization" => "Bearer #{token}"}
+      expect(response).to have_http_status(:success)
+    end
 
-  # describe "GET /destroy" do
-  #   it "returns http success" do
-  #     get "/tasks/destroy"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
+    it "get missing task ID returns 404" do 
+      get "/tasks/#{880}",
+      headers: {"Authorization" => "Bearer #{token}"}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
