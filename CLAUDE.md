@@ -54,11 +54,11 @@ Topics to cover:
 - [x] JwtService — encoding and decoding tokens
 - [x] ApplicationController — authenticating every request
 - [x] Auth controller — register and login endpoints
-- [ ] Task model with user association and validations
-- [ ] Tasks controller — full CRUD with Redis cache-aside pattern
-- [ ] Cache invalidation on writes
-- [ ] Routes
-- [ ] RSpec tests for models and request specs
+- [x] Task model with user association and validations
+- [x] Tasks controller — full CRUD with Redis cache-aside pattern
+- [x] Cache invalidation on writes
+- [x] Routes
+- [x] RSpec tests for models and request specs (17 passing: 7 user model, 4 task model, 6 tasks request specs)
 
 Milestone: API is fully functional and tested. Can register, login, and manage tasks
 via Postman or curl.
@@ -67,14 +67,14 @@ via Postman or curl.
 **Goal:** Build the UI from scratch alongside the API
 
 Topics to cover:
-- [ ] Project scaffold with Vite TypeScript template (`npm create vite@latest task-manager-frontend -- --template react-ts`)
-- [ ] TypeScript interfaces for all API response shapes
-- [ ] Axios client with JWT interceptor
-- [ ] React context for auth state (token and current user)
-- [ ] Login and registration pages
-- [ ] Tasks page — list, create, update status, delete
-- [ ] Protected routing — redirect to login if not authenticated
-- [ ] Connecting to the Rails API end to end
+- [x] Project scaffold with Vite TypeScript template (`npm create vite@latest task-manager-frontend -- --template react-ts`)
+- [x] TypeScript interfaces for all API response shapes
+- [x] Axios client with JWT interceptor
+- [x] React context for auth state (token and current user)
+- [x] Login and registration pages
+- [x] Tasks page — list, create, update status, delete
+- [x] Protected routing — redirect to login if not authenticated
+- [x] Connecting to the Rails API end to end
 
 Milestone: Full stack app works. Register, login, create and manage tasks in the browser.
 
@@ -82,10 +82,10 @@ Milestone: Full stack app works. Register, login, create and manage tasks in the
 **Goal:** Containerize the full stack so it runs with one command
 
 Topics to cover:
-- [ ] Dockerfile for Rails API
-- [ ] Dockerfile for React frontend
-- [ ] docker-compose.yml — Rails + React + PostgreSQL + Redis together
-- [ ] Environment variables and secrets
+- [x] Dockerfile for Rails API
+- [x] Dockerfile for React frontend
+- [x] docker-compose.yml — Rails + React + PostgreSQL + Redis together
+- [x] Environment variables and secrets
 
 Milestone: `docker-compose up --build` starts the entire app.
 
@@ -96,12 +96,20 @@ Milestone: `docker-compose up --build` starts the entire app.
 Update this section after every session.
 
 ```
-Phase 1 — Rails API:    [ ] In progress
-Phase 2 — React + TS:   [ ] Not started
-Phase 3 — Docker:       [ ] Not started
+Phase 1 — Rails API:    [x] Complete
+Phase 2 — React + TS:   [x] Complete
+Phase 3 — Docker:       [x] Complete
 
-Last session: Scaffolded Rails API, added gems, created DB, confirmed server runs
-Next task:    User model with BCrypt (has_secure_password)
+Last session: Fixed localStorage refresh bug (useState initialized from
+              localStorage.getItem). Passed React knowledge check (TypeScript
+              interfaces + React context). Dockerized full stack — Rails Dockerfile
+              (ruby:3.2.2, bundle install, rails server -b 0.0.0.0), React Dockerfile
+              (node:20, npm install, vite --host), docker-compose.yml wiring all 4
+              services (api/frontend/db/redis) with DATABASE_URL + REDIS_URL env
+              vars. Updated cache store to redis_cache_store with REDIS_URL fallback.
+              docker-compose up --build starts entire app. End-to-end flow verified
+              through Docker: register → login → create/update/delete tasks.
+Next task:    Project complete — ready for Project 4
 ```
 
 ---
@@ -192,7 +200,10 @@ If these cannot be answered confidently, do not move to Project 4.
 
 ## Notes from past sessions
 
-*(Update this after every session with one or two things learned.)*
+- Confirmed understanding of JWT statelessness (token carries its own signed proof of
+  identity, no server-side session lookup needed) and cache-aside (DB is source of
+  truth, write-then-invalidate, never update cache in place) — both explained
+  correctly unprompted. Cleared to move into Phase 2.
 
 ---
 
